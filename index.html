@@ -161,10 +161,11 @@
   .lead-points li::before {
     content: "";
     position: absolute;
-    left: 0;
-    top: 0.62em;
-    width: 0.42rem;
-    height: 1px;
+    left: 0.12rem;
+    top: 0.66em;
+    width: 0.28rem;
+    height: 0.28rem;
+    border-radius: 50%;
     background: var(--accent);
   }
   .lead-links {
@@ -224,6 +225,34 @@
     line-height: 1.6;
     max-width: 62ch;
     margin: 0;
+  }
+
+  .entry-points {
+    grid-column: 1;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+    max-width: 62ch;
+  }
+  .entry-points li {
+    position: relative;
+    padding-left: 1.15rem;
+    color: var(--ink-2);
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  .entry-points li::before {
+    content: "";
+    position: absolute;
+    left: 0.12rem;
+    top: 0.66em;
+    width: 0.28rem;
+    height: 0.28rem;
+    border-radius: 50%;
+    background: var(--accent);
   }
 
   .entry-links {
@@ -287,12 +316,9 @@
           <span class="tag tag-live">In App Store review</span>
         </div>
         <ul class="lead-points">
-          <li>Started as a personal project: a keepsake for family, preserving precious moments, my grandmother's recipes, my dad's poetry, and others, in their own words, then built out into something other families could use too.</li>
-          <li>Wrote PRDs and a phased roadmap before writing code (docs/plans), and defined test cases and expected behavior before building each feature (TDD), enforced with custom spec-driven-development skills as structural guardrails while building with AI coding agents.</li>
-          <li>Built as a 3-stage AI pipeline (transcribe with Whisper, translate/structure with Gemini, persist), with translation and structuring kept as two separate LLM calls, so translation doesn't flatten grandma's phrasing like "a handful" into an exact measurement.</li>
-          <li>FastAPI + Next.js on Supabase (Postgres, Auth, Storage), with JWT auth, rate limiting, and content moderation before anything is saved.</li>
-          <li>Recording flow: record narration in Telugu, transcribe, review and correct the transcript, then save as a structured memory alongside the original audio.</li>
-          <li>Packaged the web app into a native iOS app using Capacitor, which wraps an existing web codebase for app stores instead of rebuilding natively, so no separate iOS-specific codebase was needed.</li>
+          <li>Started as a personal project, a keepsake for family: my grandmother's recipes and my dad's poetry, in their own words, then built out into something other families could use too.</li>
+          <li>A 3-stage AI pipeline (transcribe with Whisper, translate/structure with Gemini, persist) on FastAPI + Next.js/Supabase, built with PRDs and test cases written before each feature, enforced by custom spec-driven-development skills.</li>
+          <li>Record narration in Telugu, review and correct the transcript, then save as a structured memory, packaged into a native iOS app via Capacitor so no separate iOS codebase was needed.</li>
         </ul>
         <div class="lead-links">
           <a href="https://www.theechoesofhome.com/">theechoesofhome.com</a>
@@ -309,7 +335,11 @@
             <h3 class="entry-name"><a href="https://github.com/pavani-aiml-space/jira-slack-triage-agent">Slack to Jira Triage Agent</a></h3>
             <span class="tag tag-lang">Python</span>
           </div>
-          <p class="entry-desc">Watches a Slack channel, classifies each message with an LLM, and files a structured Jira ticket, escalating to a human instead of guessing when confidence is low. Duplicate detection by embedding similarity, on-demand memory retrieval that only pulls in past context when the model is genuinely uncertain, and a golden-dataset eval harness with LLM-as-judge scoring.</p>
+          <ul class="entry-points">
+            <li>Watches a Slack channel, classifies each message with an LLM, and files a structured Jira ticket, escalating to a human instead of guessing when confidence is low.</li>
+            <li>Duplicate detection by embedding similarity, and on-demand memory retrieval that only pulls in past context when the model is genuinely uncertain.</li>
+            <li>Golden-dataset eval harness with LLM-as-judge scoring.</li>
+          </ul>
           <div class="entry-links">
             <a href="https://github.com/pavani-aiml-space/jira-slack-triage-agent">Repository</a>
           </div>
@@ -320,7 +350,11 @@
             <h3 class="entry-name"><a href="https://github.com/pavani-aiml-space/incident-overdue-alert-agent">Incident Overdue Alert Agent</a></h3>
             <span class="tag tag-lang">TypeScript</span>
           </div>
-          <p class="entry-desc">Watches a Jira project for incidents that have gone stale past a threshold, surfaces them on a live Next.js dashboard, and emails each owner a digest with a due date, an action plan, and a documented reason for anything still unaddressed. An AI read flags what the priority label alone misses, a real example caught a Medium-priority ticket masking a silent data-integrity bug that had gone unnoticed for weeks.</p>
+          <ul class="entry-points">
+            <li>Watches a Jira project for incidents that have gone stale past a threshold, surfaces them on a live Next.js dashboard.</li>
+            <li>Emails each owner a digest with a due date, an action plan, and a documented reason for anything still unaddressed.</li>
+            <li>A single LLM call per digest reads each overdue ticket's actual description text, not just its priority label, to flag risk the label alone would hide, a real example caught a Medium-priority ticket masking a silent data-integrity bug.</li>
+          </ul>
           <div class="entry-links">
             <a href="https://github.com/pavani-aiml-space/incident-overdue-alert-agent">Repository</a>
           </div>
@@ -331,7 +365,11 @@
             <h3 class="entry-name"><a href="https://github.com/pavani-aiml-space/reusable-qa-framework">Reusable QA Framework</a></h3>
             <span class="tag tag-lang">TypeScript</span>
           </div>
-          <p class="entry-desc">A Playwright test framework you set up once and point at any application. Each app supplies only its own URL, login, and test data, and the shared rules never change. An AI can propose a test, but nothing counts as governed coverage until a person approves the plan. Validated against this portfolio's own production app (Echoes of Home) plus several legacy-code scenarios, with real defects found, classified, and fixed along the way.</p>
+          <ul class="entry-points">
+            <li>A Playwright test framework you set up once and point at any application, each app supplies only its own URL, login, and test data, and the shared rules never change.</li>
+            <li>An AI can propose a test, but nothing counts as governed coverage until a person approves the plan.</li>
+            <li>Validated against this portfolio's own production app (Echoes of Home) plus several legacy-code scenarios, with real defects found, classified, and fixed along the way.</li>
+          </ul>
           <div class="entry-links">
             <a href="https://github.com/pavani-aiml-space/reusable-qa-framework">Repository</a>
           </div>
@@ -342,7 +380,11 @@
             <h3 class="entry-name"><a href="https://github.com/pavani-aiml-space/continuum-rag">Continuum</a></h3>
             <span class="tag tag-lang">Python</span>
           </div>
-          <p class="entry-desc">A governed RAG pipeline: retrieval searches across a scattered data estate, but answering is structurally restricted to only what's been explicitly reviewed and approved, enforced at the retrieval layer itself, not just requested of the model. Hybrid dense+sparse retrieval with RRF fusion (searches both by meaning and by keyword, then re-ranks everything by how well it did across both), citations that resolve back to source text, and confidence-gated guardrails.</p>
+          <ul class="entry-points">
+            <li>A governed RAG pipeline: retrieval searches across a scattered data estate, but answering is structurally restricted to only what's been explicitly reviewed and approved.</li>
+            <li>That restriction is enforced at the retrieval layer itself, not just requested of the model.</li>
+            <li>Hybrid dense+sparse retrieval with RRF fusion (searches both by meaning and by keyword, then re-ranks everything by how well it did across both), citations that resolve back to source text, and confidence-gated guardrails.</li>
+          </ul>
           <div class="entry-links">
             <a href="https://github.com/pavani-aiml-space/continuum-rag">Repository</a>
           </div>
@@ -353,7 +395,11 @@
             <h3 class="entry-name"><a href="https://github.com/pavani-aiml-space/spec-driven-development">Spec-Driven Development</a></h3>
             <span class="tag tag-lang">Shell</span>
           </div>
-          <p class="entry-desc">A project-agnostic Claude Code skill pack that runs an AI-built application from concept through closeout (design, plan, build, test, debug, review, release), plus role skills for developers. An installer wires the whole pack into any project. This is the exact lifecycle behind the Jira triage agent and QA framework results above, not just a template.</p>
+          <ul class="entry-points">
+            <li>A project-agnostic Claude Code skill pack that runs an AI-built application from concept through closeout (design, plan, build, test, debug, review, release), plus role skills for developers.</li>
+            <li>An installer wires the whole pack into any project.</li>
+            <li>This is the exact lifecycle behind the Jira triage agent and QA framework results above, not just a template.</li>
+          </ul>
           <div class="entry-links">
             <a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pavani-aiml-space/spec-driven-development/main/index.html">Overview page</a>
             <a href="https://github.com/pavani-aiml-space/spec-driven-development">Repository</a>
@@ -365,7 +411,11 @@
             <h3 class="entry-name"><a href="https://github.com/pavani-aiml-space/txt-to-sql">NLQ-SQL</a></h3>
             <span class="tag tag-lang">Python</span>
           </div>
-          <p class="entry-desc">Turns a plain-English question into SQL against a Postgres database, validates it against a safety policy, and feeds errors back to the model to self-correct: a real recorded run caught a wrong column name, retried, and produced the right query. Includes an automatic multi-step query planner, a correctness and adversarial-injection benchmark suite, and an MCP server.</p>
+          <ul class="entry-points">
+            <li>Turns a plain-English question into SQL against a Postgres database, validates it against a safety policy, and feeds errors back to the model to self-correct.</li>
+            <li>A real recorded run caught a wrong column name, retried, and produced the right query.</li>
+            <li>Includes an automatic multi-step query planner, a correctness and adversarial-injection benchmark suite, and an MCP server.</li>
+          </ul>
           <div class="entry-links">
             <a href="https://github.com/pavani-aiml-space/txt-to-sql">Repository</a>
           </div>
@@ -376,7 +426,11 @@
             <h3 class="entry-name"><a href="https://github.com/pavani-aiml-space/instagram-content-mcp-agent">Instagram Content Agent</a></h3>
             <span class="tag tag-lang">Python</span>
           </div>
-          <p class="entry-desc">A multi-agent pipeline that takes a topic, writes the caption, generates the image, and publishes to Instagram. Each agent calls a real MCP server over stdio rather than an in-process function, chained with LangChain LCEL (pipes each step's output straight into the next, with built-in retry on failure) behind a FastAPI backend.</p>
+          <ul class="entry-points">
+            <li>A multi-agent pipeline that takes a topic, writes the caption, generates the image, and publishes to Instagram.</li>
+            <li>Each agent calls a real MCP server over stdio rather than an in-process function.</li>
+            <li>Chained with LangChain LCEL (pipes each step's output straight into the next, with built-in retry on failure) behind a FastAPI backend.</li>
+          </ul>
           <div class="entry-links">
             <a href="https://github.com/pavani-aiml-space/instagram-content-mcp-agent">Repository</a>
           </div>
@@ -387,7 +441,11 @@
             <h3 class="entry-name"><a href="https://github.com/pavani-aiml-space/pm-tpm-skills">PM &amp; TPM Skills</a></h3>
             <span class="tag tag-lang">Shell</span>
           </div>
-          <p class="entry-desc">A skill pack for product and program management work: PRD generation, roadmap prioritization, success metrics, and build-vs-buy, plus a prototype-first Research-to-Decide pipeline validated end to end on a real worked example, alongside the mechanisms a TPM uses to run a cross-team program, several of which publish straight into Confluence and Jira.</p>
+          <ul class="entry-points">
+            <li>A skill pack for product and program management work: PRD generation, roadmap prioritization, success metrics, and build-vs-buy.</li>
+            <li>A prototype-first Research-to-Decide pipeline validated end to end on a real worked example.</li>
+            <li>The mechanisms a TPM uses to run a cross-team program, several of which publish straight into Confluence and Jira.</li>
+          </ul>
           <div class="entry-links">
             <a href="https://htmlpreview.github.io/?https://raw.githubusercontent.com/pavani-aiml-space/pm-tpm-skills/main/product-manager/prd-generator/examples/interactive-flow-echoes-of-home.html">Example output</a>
             <a href="https://github.com/pavani-aiml-space/pm-tpm-skills">Repository</a>
@@ -399,7 +457,11 @@
             <h3 class="entry-name"><a href="https://github.com/pavani-aiml-space/claude-pet-companion">ClaudePet</a></h3>
             <span class="tag tag-lang">JavaScript</span>
           </div>
-          <p class="entry-desc">A desktop tray companion for Claude Code. A floating pet jumps, speaks, and notifies when a session needs input or hits a snag, then pushes a short digest to your phone once you've stepped away. Built on Electron with a file-based hook bridge, never scraping transcripts.</p>
+          <ul class="entry-points">
+            <li>A desktop tray companion for Claude Code.</li>
+            <li>A floating pet jumps, speaks, and notifies when a session needs input or hits a snag, then pushes a short digest to your phone once you've stepped away.</li>
+            <li>Built on Electron with a file-based hook bridge, never scraping transcripts.</li>
+          </ul>
           <div class="entry-links">
             <a href="https://github.com/pavani-aiml-space/claude-pet-companion">Repository</a>
           </div>
