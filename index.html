@@ -344,7 +344,7 @@
             <h3 class="entry-name"><a href="https://github.com/pavani-aiml-space/continuum-rag">Continuum</a></h3>
             <span class="tag tag-lang">Python</span>
           </div>
-          <p class="entry-desc">A governed RAG pipeline: retrieval searches across a scattered data estate, but answering is structurally restricted to only what's been explicitly reviewed and approved, enforced at the retrieval layer itself, not just requested of the model. Hybrid dense+sparse retrieval with RRF fusion (searches both by meaning and by keyword, then merges the results), citations that resolve back to source text, and confidence-gated guardrails.</p>
+          <p class="entry-desc">A governed RAG pipeline: retrieval searches across a scattered data estate, but answering is structurally restricted to only what's been explicitly reviewed and approved, enforced at the retrieval layer itself, not just requested of the model. Hybrid dense+sparse retrieval with RRF fusion (searches both by meaning and by keyword, then re-ranks everything by how well it did across both), citations that resolve back to source text, and confidence-gated guardrails.</p>
           <div class="entry-links">
             <a href="https://github.com/pavani-aiml-space/continuum-rag/blob/main/docs/00-how-it-works.md">How it works</a>
             <a href="https://github.com/pavani-aiml-space/continuum-rag">Repository</a>
@@ -380,7 +380,7 @@
             <h3 class="entry-name"><a href="https://github.com/pavani-aiml-space/instagram-content-mcp-agent">Instagram Content Agent</a></h3>
             <span class="tag tag-lang">Python</span>
           </div>
-          <p class="entry-desc">A multi-agent pipeline that takes a topic, writes the caption, generates the image, and publishes to Instagram. Each agent calls a real MCP server over stdio rather than an in-process function, chained with LangChain LCEL behind a FastAPI backend.</p>
+          <p class="entry-desc">A multi-agent pipeline that takes a topic, writes the caption, generates the image, and publishes to Instagram. Each agent calls a real MCP server over stdio rather than an in-process function, chained with LangChain LCEL (pipes each step's output straight into the next, with built-in retry on failure) behind a FastAPI backend.</p>
           <div class="entry-links">
             <a href="https://github.com/pavani-aiml-space/instagram-content-mcp-agent">Repository</a>
           </div>
